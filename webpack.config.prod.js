@@ -1,38 +1,40 @@
-var webpack = require("webpack");
+var webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
   context: __dirname,
   entry: "./frontend/main.jsx",
   output: {
-    path: "./app/assets/javascripts",
+    path: path.join(__dirname, 'app', 'assets', 'javascripts'),
     filename: "bundle.js"
   },
   plugins:[
-      new webpack.DefinePlugin({
-        'process.env':{
-          'NODE_ENV': JSON.stringify('production')
-        }
-      }),
-      new webpack.optimize.UglifyJsPlugin({
-        compress:{
-          warnings: true
-        }
-      })
-    ],
+    new webpack.optimize.UglifyJsPlugin({
+      minimize: true,
+      compress: {
+        warnings: false
+      }
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    })
+  ],
   module: {
     loaders: [
       {
         test: /\.jsx?$/,
-        exclude: /(node_modules|bower_components)/,
+        exclude: /node_modules/,
         loader: 'babel',
         query: {
-          presets: ["react"]
+          presets: ['react']
         }
       }
     ]
   },
-  devtool: 'source-maps',
+  devtool: 'source-map',
   resolve: {
-    extensions: ["", ".js", ".jsx" ]
+    extensions: ["", ".js", ".jsx"]
   }
 };
