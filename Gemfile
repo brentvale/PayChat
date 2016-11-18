@@ -22,7 +22,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # for authentication
-# gem 'devise',           '~> 4.2'
+gem 'devise',           '~> 4.2'
 # gem 'devise_invitable', '~> 1.7.0'
 #
 # for storing images with Amazon S3
